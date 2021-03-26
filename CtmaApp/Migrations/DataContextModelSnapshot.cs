@@ -19,6 +19,33 @@ namespace CtmaApp.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CtmaApp.Models.AgentInfo", b =>
+                {
+                    b.Property<long>("AgentInfoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("HostMachineInfoID")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("PortA2S")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PortS2A")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AgentInfoID");
+
+                    b.HasIndex("HostMachineInfoID");
+
+                    b.ToTable("tbl_AgentInfo");
+                });
+
             modelBuilder.Entity("CtmaApp.Models.MachineInfo", b =>
                 {
                     b.Property<long>("MachineInfoID")
@@ -69,6 +96,39 @@ namespace CtmaApp.Migrations
                     b.ToTable("tbl_OSInfo");
                 });
 
+            modelBuilder.Entity("CtmaApp.Models.ServerInfo", b =>
+                {
+                    b.Property<long>("ServerInfoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DefaultS2APort")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("HostMachineInfoID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServerInfoID");
+
+                    b.HasIndex("HostMachineInfoID");
+
+                    b.ToTable("tbl_ServerInfo");
+                });
+
+            modelBuilder.Entity("CtmaApp.Models.AgentInfo", b =>
+                {
+                    b.HasOne("CtmaApp.Models.MachineInfo", "Host")
+                        .WithMany()
+                        .HasForeignKey("HostMachineInfoID");
+
+                    b.Navigation("Host");
+                });
+
             modelBuilder.Entity("CtmaApp.Models.MachineInfo", b =>
                 {
                     b.HasOne("CtmaApp.Models.OSInfo", "OS")
@@ -76,6 +136,15 @@ namespace CtmaApp.Migrations
                         .HasForeignKey("OSInfoID");
 
                     b.Navigation("OS");
+                });
+
+            modelBuilder.Entity("CtmaApp.Models.ServerInfo", b =>
+                {
+                    b.HasOne("CtmaApp.Models.MachineInfo", "Host")
+                        .WithMany()
+                        .HasForeignKey("HostMachineInfoID");
+
+                    b.Navigation("Host");
                 });
 #pragma warning restore 612, 618
         }

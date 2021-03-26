@@ -12,7 +12,6 @@ namespace CtmaApp.Models
         public long ServerInfoID { get; set; }
         public MachineInfo Host { get; set; }
         public int DefaultS2APort { get; set; }
-        [Column(TypeName="varchar(30)")]
         public CtmVersion Version { get; set; }
     }
 }

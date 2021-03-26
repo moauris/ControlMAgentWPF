@@ -13,8 +13,6 @@ namespace CtmaApp.Models
         public MachineInfo Host { get; set; }
         public int PortA2S { get; set; }
         public int PortS2A { get; set; }
-
-        [Column(TypeName = "varchar(30)")]
         public CtmVersion Version { get; set; }
     }
 

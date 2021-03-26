@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CtmaApp.Views;
 
 namespace CtmaApp
 {
@@ -18,6 +19,9 @@ namespace CtmaApp
         {
             DataContext context = new DataContext();
             SeedData.PopulateData(context);
+
+            var LoginWin = new LoginWindow();
+            LoginWin.Show();
         }
     }
 }

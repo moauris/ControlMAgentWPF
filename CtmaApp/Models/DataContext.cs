@@ -26,7 +26,17 @@ namespace CtmaApp.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //TODO: Find how to map model property Agent Version
+            //DONE: Find how to map model property Agent Version
+            builder.Entity<AgentInfo>()
+                .Property(p => p.Version)
+                .HasConversion(
+                ctmVer => ctmVer.version,
+                ver => new CtmVersion(ver));
+            builder.Entity<ServerInfo>()
+                .Property(p => p.Version)
+                .HasConversion(
+                ctmVer => ctmVer.version,
+                ver => new CtmVersion(ver));
         }
     }
 }
