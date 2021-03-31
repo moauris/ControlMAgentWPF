@@ -12,5 +12,6 @@ namespace CtmaApp.Models
         public string UserName { get; set; }
         public string Salt { get; set; }
         public string SaltedHash { get; set; }
+        public string[] Roles { get; set; }
     }
 }

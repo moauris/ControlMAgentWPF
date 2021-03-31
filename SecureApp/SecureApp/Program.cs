@@ -10,6 +10,7 @@ namespace SecureApp
     {
         static void Main(string[] args)
         {
+            BytesToStringConverter.Foo();
         }
     }
 }
