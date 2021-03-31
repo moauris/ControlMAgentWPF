@@ -35,6 +35,15 @@ namespace CtmaAppTests.AppSecurityServiceTests
             var user = CryptoServices.Register(myName, myPass, new string[] { "Cute_Cat" });
 
             //Assert
+            bool CorrectLogin = CryptoServices.CheckPassword("MomiCat", "P@s$w0rD");
+            Assert.IsTrue(CorrectLogin);
+
+            bool WrongUser = CryptoServices.CheckPassword("NotMomi", "P@s$w0rD");
+            Assert.IsFalse(WrongUser);
+
+            bool WrongLogin = CryptoServices.CheckPassword("MomiCat", "88881234");
+            Assert.IsFalse(WrongLogin);
+
         }
     }
 }
