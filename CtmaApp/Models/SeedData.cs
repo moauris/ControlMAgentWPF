@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using CtmaApp.AppSecurityService;
 using Microsoft.EntityFrameworkCore;
 
 namespace CtmaApp.Models
@@ -104,7 +105,23 @@ namespace CtmaApp.Models
 
                 context.tbl_ServerInfo.AddRange(s1, s2);
 
-
+                context.tbl_Users.AddRange(
+                    CryptoServices.Register(
+                        "ctmaAdmin",
+                        "c7m@Adm1n".ToSecureSTR(),
+                        new string[] {"admin", "power_user"}
+                        ),
+                    CryptoServices.Register(
+                        "MomiCat",
+                        "M0mic@t".ToSecureSTR(),
+                        new string[] { "power_user" }
+                        ),
+                    CryptoServices.Register(
+                        "ChenMo",
+                        "Ch2nM0".ToSecureSTR(),
+                        new string[] { "user" }
+                        )
+                    );
 
                 context.SaveChanges();
             }

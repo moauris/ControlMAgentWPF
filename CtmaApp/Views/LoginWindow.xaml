@@ -8,6 +8,8 @@
         xmlns:custom="clr-namespace:CtmaApp.CustomControls"
         mc:Ignorable="d"
         Title="Welcome" Height="450" Width="320">
+    <Window.Resources>
+    </Window.Resources>
     <StackPanel>
         <TextBlock x:Name="Title" TextAlignment="Center">
         </TextBlock>
@@ -22,6 +24,7 @@
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Width" Value="200" />
                     <Setter Property="Margin" Value="15 10 15 15" />
+                    <Setter Property="Padding" Value="0 5 0 5" />
                 </Style>
             </StackPanel.Resources>
             <Button>Login</Button>

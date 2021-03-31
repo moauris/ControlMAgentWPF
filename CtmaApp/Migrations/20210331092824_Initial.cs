@@ -22,6 +22,22 @@ namespace CtmaApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "tbl_Users",
+                columns: table => new
+                {
+                    UserAccountID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SaltedHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Roles = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Users", x => x.UserAccountID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tbl_MachineInfo",
                 columns: table => new
                 {
@@ -110,6 +126,9 @@ namespace CtmaApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_ServerInfo");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Users");
 
             migrationBuilder.DropTable(
                 name: "tbl_MachineInfo");

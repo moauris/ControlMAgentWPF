@@ -13,7 +13,7 @@ namespace CtmaApp.Models
         public DbSet<OSInfo> tbl_OSInfo { get; set; }
         public DbSet<AgentInfo> tbl_AgentInfo { get; set; }
         public DbSet<ServerInfo> tbl_ServerInfo { get; set; }
-
+        public DbSet<UserAccount> tbl_Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +37,16 @@ namespace CtmaApp.Models
                 .HasConversion(
                 ctmVer => ctmVer.version,
                 ver => new CtmVersion(ver));
+            builder.Entity<UserAccount>()
+                .Property(u => u.Roles)
+                .HasConversion(
+                strArr => ConvertFromStrArr(strArr),
+                str => ConvertFromStr(str));
         }
+
+        private string ConvertFromStrArr(string[] original)
+            => string.Join(";", original);
+        private string[] ConvertFromStr(string original)
+            => original.Split(';');
     }
 }

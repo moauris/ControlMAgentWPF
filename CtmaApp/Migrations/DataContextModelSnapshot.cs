@@ -120,6 +120,30 @@ namespace CtmaApp.Migrations
                     b.ToTable("tbl_ServerInfo");
                 });
 
+            modelBuilder.Entity("CtmaApp.Models.UserAccount", b =>
+                {
+                    b.Property<long>("UserAccountID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Roles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Salt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SaltedHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserAccountID");
+
+                    b.ToTable("tbl_Users");
+                });
+
             modelBuilder.Entity("CtmaApp.Models.AgentInfo", b =>
                 {
                     b.HasOne("CtmaApp.Models.MachineInfo", "Host")

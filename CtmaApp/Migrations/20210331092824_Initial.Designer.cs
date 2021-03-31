@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CtmaApp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210326053701_Initial")]
+    [Migration("20210331092824_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,6 +120,30 @@ namespace CtmaApp.Migrations
                     b.HasIndex("HostMachineInfoID");
 
                     b.ToTable("tbl_ServerInfo");
+                });
+
+            modelBuilder.Entity("CtmaApp.Models.UserAccount", b =>
+                {
+                    b.Property<long>("UserAccountID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Roles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Salt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SaltedHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserAccountID");
+
+                    b.ToTable("tbl_Users");
                 });
 
             modelBuilder.Entity("CtmaApp.Models.AgentInfo", b =>
