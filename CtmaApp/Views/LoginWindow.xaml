@@ -4,13 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CtmaApp.Views"
-        
         xmlns:custom="clr-namespace:CtmaApp.CustomControls"
         mc:Ignorable="d"
-        Title="Welcome" Height="450" Width="320">
+        Title="Welcome" Height="450" Width="320"
+        WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Window.Resources>
     </Window.Resources>
     <StackPanel>
+        <TextBlock FontSize="20" TextWrapping="Wrap" TextAlignment="Center">
+            Control/M Agent <LineBreak/> Manager <LineBreak/>(Dev Version)
+        </TextBlock>
         <TextBlock x:Name="Title" TextAlignment="Center">
         </TextBlock>
         <custom:HoverOverInputControl>
@@ -23,13 +26,13 @@
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Width" Value="200" />
-                    <Setter Property="Margin" Value="15 10 15 15" />
+                    <Setter Property="Margin" Value="15 5 15 5" />
                     <Setter Property="Padding" Value="0 5 0 5" />
                 </Style>
             </StackPanel.Resources>
             <Button>Login</Button>
             <Button>Register</Button>
-            <Button>Exit</Button>
+            <Button Click="ExitButton_Click">Exit</Button>
         </StackPanel>
     </StackPanel>
 

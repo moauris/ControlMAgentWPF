@@ -14,8 +14,7 @@ namespace CtmaApp.AppSecurityService
 {
     public static class CryptoServices
     {
-        //TODO: using temp dic for users
-        private static Dictionary<string, UserAccount> Users = new Dictionary<string, UserAccount>();
+        //Done: using temp dic for users
         public static UserAccount Register(string username, SecureString password, string[] roles)
         {
             var rng = RandomNumberGenerator.Create();
@@ -32,7 +31,17 @@ namespace CtmaApp.AppSecurityService
                 Roles = roles
             };
             //TODO: Add new user to EF context;
-            Users.Add(user.UserName, user);
+            //Try to register user in the context, if exist, return null
+            using (DataContext context = new DataContext())
+            {
+                if(context.tbl_Users
+                    .Where(u => u.UserName == user.UserName)
+                    .Any())
+                    return null;
+                context.tbl_Users.Add(user);
+                context.SaveChanges();
+            }
+
             return user;
         }
 
@@ -55,16 +64,37 @@ namespace CtmaApp.AppSecurityService
                 return null;
             var identity = new GenericIdentity
                 (username, "MyAppAuth");
+
+            UserAccount user;
+            using (DataContext context = new DataContext())
+            {
+                if (!context.tbl_Users
+                    .Where(u => u.UserName == username)
+                    .Any())
+                    return null;
+                user = context.tbl_Users
+                    .Where(u => u.UserName == username)
+                    .First();
+            }
+
             var principal = new GenericPrincipal
-                (identity, Users["username"].Roles);
+                (identity, user.Roles);
             return principal;
         }
         public static bool CheckPassword(string username, string password) => 
             CheckPassword(username, password.ToSecureSTR());
         public static bool CheckPassword(string username, SecureString password)
         {
-            if (!Users.ContainsKey(username)) return false;
-            var user = Users[username];
+            UserAccount user;
+            using(DataContext context = new DataContext())
+            {
+                if (!context.tbl_Users
+                    .Where(u => u.UserName == username)
+                    .Any()) return false;
+                user = context.tbl_Users
+                    .Where(u => u.UserName == username)
+                    .First();
+            }
             var saltedHasedPassword =
                 SaltAndHashPassword(password, user.Salt);
             Console.WriteLine($"{saltedHasedPassword} == {user.SaltedHash}");
