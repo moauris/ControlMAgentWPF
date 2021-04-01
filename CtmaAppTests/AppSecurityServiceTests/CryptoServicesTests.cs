@@ -20,7 +20,7 @@ namespace CtmaAppTests.AppSecurityServiceTests
         public void RegisterTest()
         {
             //Arrange
-            string myName = "MomiCat";
+            string myName = "testuser";
             SecureString myPass = new SecureString();
             myPass.AppendChar('P');
             myPass.AppendChar('@');
@@ -35,13 +35,13 @@ namespace CtmaAppTests.AppSecurityServiceTests
             var user = CryptoServices.Register(myName, myPass, new string[] { "Cute_Cat" });
 
             //Assert
-            bool CorrectLogin = CryptoServices.CheckPassword("MomiCat", "P@s$w0rD");
+            bool CorrectLogin = CryptoServices.CheckPassword("testuser", "P@s$w0rD");
             Assert.IsTrue(CorrectLogin);
 
             bool WrongUser = CryptoServices.CheckPassword("NotMomi", "P@s$w0rD");
             Assert.IsFalse(WrongUser);
 
-            bool WrongLogin = CryptoServices.CheckPassword("MomiCat", "88881234");
+            bool WrongLogin = CryptoServices.CheckPassword("testuser", "88881234");
             Assert.IsFalse(WrongLogin);
 
         }
