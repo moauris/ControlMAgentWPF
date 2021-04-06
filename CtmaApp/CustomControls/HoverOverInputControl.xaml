@@ -12,6 +12,7 @@
         <TextBox x:Name="tbxInput"
                 Width="280" Canvas.Top="40" Margin="10"
                 Padding="5"
+                Text="{Binding InputText, ElementName=hoverOverInputControl}"
                 MouseEnter="MouseEvent"
                 MouseLeave="MouseEvent"
                 LostFocus="FocusEvent"

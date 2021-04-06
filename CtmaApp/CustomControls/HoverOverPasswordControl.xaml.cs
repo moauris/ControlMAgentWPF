@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,10 +32,21 @@ namespace CtmaApp.CustomControls
         public static readonly DependencyProperty OverlayTextProperty =
             DependencyProperty.Register("OverlayText", typeof(string), typeof(HoverOverPasswordControl), new PropertyMetadata("未输入"));
 
+        public SecureString SecretText
+        {
+            get { return (SecureString)GetValue(SecretTextProperty); }
+            set { SetValue(SecretTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SecretTextProperty =
+            DependencyProperty.Register("SecretText", typeof(SecureString), typeof(HoverOverPasswordControl), new PropertyMetadata(null));
+
 
         public HoverOverPasswordControl()
         {
             InitializeComponent();
+            PasswordBox b = new PasswordBox();
         }
 
         private void MouseEvent(object sender, MouseEventArgs e)
@@ -70,6 +82,11 @@ namespace CtmaApp.CustomControls
                 "OverlayCover", true);
                 return;
             }
+        }
+
+        private void tbxInput_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            SecretText = tbxInput.SecurePassword;
         }
     }
 }

@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CtmaApp.Views"
         xmlns:custom="clr-namespace:CtmaApp.CustomControls"
+        xmlns:viewmodels="clr-namespace:CtmaApp.ViewModels"
         mc:Ignorable="d"
         Title="Welcome" Height="450" Width="320"
         WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Window.Resources>
     </Window.Resources>
-    <StackPanel>
+    <StackPanel DataContext="{Binding viewmodels:LoginViewModel}">
         <TextBlock FontSize="20" TextWrapping="Wrap" TextAlignment="Center">
             Control/M Agent <LineBreak/> Manager <LineBreak/>(Dev Version)
         </TextBlock>
         <TextBlock x:Name="Title" TextAlignment="Center">
         </TextBlock>
-        <custom:HoverOverInputControl>
+        <custom:HoverOverInputControl InputText="{Binding UserName, Mode=TwoWay}">
             User Name
         </custom:HoverOverInputControl>
-        <custom:HoverOverPasswordControl>
+        <custom:HoverOverPasswordControl SecretText="{Binding Password, Mode=TwoWay}">
             Password
         </custom:HoverOverPasswordControl>
         <StackPanel Margin="0 30">
@@ -30,7 +31,7 @@
                     <Setter Property="Padding" Value="0 5 0 5" />
                 </Style>
             </StackPanel.Resources>
-            <Button>Login</Button>
+            <Button Command="{Binding LoginCommand}">Login</Button>
             <Button>Register</Button>
             <Button Click="ExitButton_Click">Exit</Button>
         </StackPanel>

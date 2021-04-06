@@ -33,6 +33,20 @@ namespace CtmaApp.CustomControls
             DependencyProperty.Register("OverlayText", typeof(string), typeof(HoverOverInputControl), new PropertyMetadata("未输入"));
 
 
+
+        public string InputText
+        {
+            get { return (string)GetValue(InputTextProperty); }
+            set { SetValue(InputTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for InputText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InputTextProperty =
+            DependencyProperty.Register("InputText", typeof(string), typeof(HoverOverInputControl), new PropertyMetadata(string.Empty));
+
+
+
+
         public HoverOverInputControl()
         {
             InitializeComponent();
