@@ -13,6 +13,7 @@ namespace CtmaApp.Models
         public long MachineInfoID { get; set; }
         public string HostName { get; set; }
         public string Domain { get; set; }
+        //TODO: Need to limit ipv4/6 string input conversion
         public IPAddress IPv4 { get; set; }
         public IPAddress IPv6 { get; set; }
         public OSInfo OS { get; set; }

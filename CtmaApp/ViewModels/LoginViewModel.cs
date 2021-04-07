@@ -11,6 +11,7 @@ using System.Security;
 using System.Security.Principal;
 using CtmaApp.AppSecurityService;
 using System.Windows;
+using CtmaApp.Views;
 
 namespace CtmaApp.ViewModels
 {
@@ -79,10 +80,15 @@ namespace CtmaApp.ViewModels
             if (CurrentUser == null)
             {
                 MessageBox.Show("Login Not successful");
+                Password = null;
             }
             else
             {
                 MessageBox.Show($"Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
+                Window wkspace = new WorkspaceWindow();
+                wkspace.Show();
+
+
             }
         }
     }
