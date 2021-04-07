@@ -10,8 +10,9 @@
         Title="Welcome" Height="450" Width="320"
         WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Window.Resources>
+        <viewmodels:LoginViewModel x:Key="viewModel_Login"/>
     </Window.Resources>
-    <StackPanel DataContext="{Binding viewmodels:LoginViewModel}">
+    <StackPanel DataContext="{StaticResource viewModel_Login}">
         <TextBlock FontSize="20" TextWrapping="Wrap" TextAlignment="Center">
             Control/M Agent <LineBreak/> Manager <LineBreak/>(Dev Version)
         </TextBlock>

@@ -54,13 +54,20 @@ namespace CtmaApp.ViewModels
         public ICommand LoginCommand
         {
             //TODO: How to handle commands
-            get => _loginCommand ?? (_loginCommand = 
-                new ActionCommand((0) => LogIn_Action(0), (0) => CheckUserAndPass(0)));
+            get 
+            {
+                Action<object> action = LogIn_Action;
+                Predicate<object> predict = CheckUserAndPass;
+
+                return _loginCommand ?? (_loginCommand =
+                new ActionCommand(action, predict));
+
+            }
         }
 
         private bool CheckUserAndPass(object parameter)
         {
-            return _username != string.Empty && 
+            return _username != null && 
                 _username.Length > 0 && 
                 _password != null && 
                 _password.Length > 0;
