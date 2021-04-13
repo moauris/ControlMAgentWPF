@@ -1,7 +1,9 @@
-﻿using System;
+﻿using CtmaApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +24,8 @@ namespace CtmaApp.Views
         public LoginWindow()
         {
             InitializeComponent();
+            //This initialization happens before xaml data binding
+
         }
         private void txb_MouseEvent(object sender, MouseEventArgs e)
         {
@@ -81,6 +85,13 @@ namespace CtmaApp.Views
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public void DelayedClose()
+        {
+            //TODO: Find out a way to refrain the app from closing while shutting the login window down.
+            Thread.Sleep(3000);
+            this.Close();
         }
     }
 }

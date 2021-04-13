@@ -1,5 +1,6 @@
 ﻿<Window x:Class="CtmaApp.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -34,8 +35,14 @@
                     <Setter Property="Padding" Value="0 5 0 5" />
                 </Style>
             </StackPanel.Resources>
-            <Button Command="{Binding LoginCommand}"
-                    CommandParameter="{Binding ElementName=wd_login}">Login</Button>
+            <Button Command="{Binding LoginCommand}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:CallMethodAction MethodName="DelayedClose"
+                                            TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                Login</Button>
             <Button>Register</Button>
             <Button Click="ExitButton_Click">Exit</Button>
         </StackPanel>

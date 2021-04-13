@@ -66,6 +66,8 @@ namespace CtmaApp.ViewModels
             }
         }
 
+        public Action CloseAction { get; set; }
+
         private bool CheckUserAndPass(object parameter)
         {
             return _username != null && 
@@ -87,8 +89,7 @@ namespace CtmaApp.ViewModels
                 MessageBox.Show($"Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
                 Window wkspace = new WorkspaceWindow();
                 wkspace.Show();
-
-
+                CloseAction?.Invoke();
             }
         }
     }

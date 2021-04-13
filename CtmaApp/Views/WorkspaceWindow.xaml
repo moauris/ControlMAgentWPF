@@ -38,7 +38,10 @@
                         </Border.Background>
                     <StackPanel DataContext="{Binding}"
                                 Margin="5" >
-                        <TextBlock Text="{Binding HostName}"/>
+                        <TextBlock Text="{Binding HostName}"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
                         <TextBlock Text="{Binding Domain}"/>
                         <TextBlock Text="{Binding IPv4}"/>
                         <TextBlock Text="{Binding IPv6}"/>
