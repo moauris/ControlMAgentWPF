@@ -54,7 +54,7 @@ namespace CtmaApp.ViewModels
         private ICommand _loginCommand;
         public ICommand LoginCommand
         {
-            //TODO: How to handle commands
+            //Done! How to handle commands
             get 
             {
                 Action<object> action = LogIn_Action;
@@ -66,7 +66,6 @@ namespace CtmaApp.ViewModels
             }
         }
 
-        public Action CloseAction { get; set; }
 
         private bool CheckUserAndPass(object parameter)
         {
@@ -89,7 +88,8 @@ namespace CtmaApp.ViewModels
                 MessageBox.Show($"Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
                 Window wkspace = new WorkspaceWindow();
                 wkspace.Show();
-                CloseAction?.Invoke();
+                Application.Current.MainWindow = wkspace;
+                Application.Current.Windows[0].Close();
             }
         }
     }

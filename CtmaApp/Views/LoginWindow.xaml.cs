@@ -86,12 +86,5 @@ namespace CtmaApp.Views
         {
             Application.Current.Shutdown();
         }
-
-        public void DelayedClose()
-        {
-            //TODO: Find out a way to refrain the app from closing while shutting the login window down.
-            Thread.Sleep(3000);
-            this.Close();
-        }
     }
 }

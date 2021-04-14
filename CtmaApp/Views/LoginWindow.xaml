@@ -36,12 +36,6 @@
                 </Style>
             </StackPanel.Resources>
             <Button Command="{Binding LoginCommand}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:CallMethodAction MethodName="DelayedClose"
-                                            TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
                 Login</Button>
             <Button>Register</Button>
             <Button Click="ExitButton_Click">Exit</Button>
