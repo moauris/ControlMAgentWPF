@@ -4,6 +4,12 @@
         <RoutedUICommand.InputGestures>
             <KeyGesture>Enter</KeyGesture>
         </RoutedUICommand.InputGestures>
+        
+    </RoutedUICommand>
+    <RoutedUICommand x:Key="Command.AddNewMachine" Text="S.Command.AddNewMachine">
+        <RoutedUICommand.InputGestures>
+            <KeyGesture>Ctrl + A</KeyGesture>
+        </RoutedUICommand.InputGestures>
     </RoutedUICommand>
     
 </ResourceDictionary>

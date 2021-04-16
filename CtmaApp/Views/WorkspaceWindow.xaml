@@ -42,8 +42,15 @@
                     <Setter Property="FontWeight" Value="Normal"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddNewMachine" Style="{StaticResource btnStyle}">
-                _Add a New Machine
+            <Button x:Name="btnAddNewMachine" Style="{StaticResource btnStyle}"
+                    >
+                <Button.CommandBindings>
+                    <CommandBinding Command="{StaticResource Command.AddNewMachine}"
+                                    CanExecute="CanExecute_BtnAddNew"
+                                    Executed="Executed_BtnAddNew"/>
+                    
+                </Button.CommandBindings>
+                Add a New Machine
             </Button>
             <Button x:Name="btnDeleteSelected" Style="{StaticResource btnStyle}">
                 _Delete Selected Machine

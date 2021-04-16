@@ -1,0 +1,116 @@
+﻿<Window x:Class="CtmaApp.Views.MachineInfoDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:vm="clr-namespace:CtmaApp.ViewModels"
+        xmlns:local="clr-namespace:CtmaApp.Views"
+        mc:Ignorable="d"
+        Title="Enter a New Machine Detail" Height="Auto" Width="Auto">
+    <Window.Resources>
+        <vm:MachineInfoDetailViewModel x:Key="MachineViewModel"/>
+
+        <DataTemplate x:Key="hccTitleText">
+            <Grid>
+                <TextBlock Text="{Binding}" TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                       Width="120" Background="AntiqueWhite"
+                       FontSize="22"
+                       Padding="15"/>
+            </Grid>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type HeaderedContentControl}">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter ContentSource="Header"/>
+                            <Separator Margin="25 0"/>
+                            <ContentPresenter ContentSource="Content"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HeaderTemplate" Value="{StaticResource hccTitleText}"/>
+            
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="288"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Width" Value="288"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+               
+    </Window.Resources>
+    
+    <Grid x:Name="MainGrid" DataContext="{StaticResource MachineViewModel}"
+          Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="10" FontSize="25">
+            Creating new Machine Info
+        </TextBlock>
+        <HeaderedContentControl Grid.Row="1">
+            <HeaderedContentControl.Header>
+                HostName
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxHostname" 
+                     Text="{Binding MachineInfo.HostName}"></TextBox>
+        </HeaderedContentControl>
+        <HeaderedContentControl Grid.Row="2">
+            <HeaderedContentControl.Header>
+                Domain
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxDomain"
+                     Text="{Binding MachineInfo.Domain}"></TextBox>
+        </HeaderedContentControl>
+        <HeaderedContentControl Grid.Row="3">
+            <HeaderedContentControl.Header>
+                IPv4
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxIPv4"
+                     Text="{Binding MachineInfo.IPv4}"></TextBox>
+        </HeaderedContentControl>
+        <HeaderedContentControl Grid.Row="4">
+            <HeaderedContentControl.Header>
+                IPv6
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxIPv6"
+                     Text="{Binding MachineInfo.IPv6}"></TextBox>
+        </HeaderedContentControl>
+        
+        <HeaderedContentControl Grid.Row="5">
+            <HeaderedContentControl.Header>
+                OSInfo
+            </HeaderedContentControl.Header>
+            <StackPanel>
+                <ComboBox x:Name="cbxOSInfo0"></ComboBox>
+                <ComboBox x:Name="cbxOSInfo1"></ComboBox>
+                <ComboBox x:Name="cbxOSInfo2"></ComboBox>
+            </StackPanel>
+        </HeaderedContentControl>
+
+        <Button x:Name="btnCheck" Grid.Row="6"
+                Margin="10" Width="180" Height="33"
+                Click="btnCheckClicked">
+            Check
+        </Button>
+    </Grid>
+</Window>
