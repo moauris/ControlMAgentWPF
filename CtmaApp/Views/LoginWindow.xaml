@@ -15,7 +15,14 @@
     <Window.Resources>
         <viewmodels:LoginViewModel x:Key="viewModel_Login"/>
     </Window.Resources>
-    <StackPanel DataContext="{StaticResource viewModel_Login}">
+    <StackPanel x:Name="MainStackPanel"
+        DataContext="{StaticResource viewModel_Login}">
+
+        <StackPanel.CommandBindings>
+            <CommandBinding Command="{StaticResource Command.LoginEnter}"
+                        CanExecute="CanExecute_Login" 
+                        Executed="Executed_Login"/>
+        </StackPanel.CommandBindings>
         <TextBlock FontSize="20" TextWrapping="Wrap" TextAlignment="Center">
             Control/M Agent <LineBreak/> Manager <LineBreak/>(Dev Version)
         </TextBlock>
@@ -35,8 +42,6 @@
                     <Setter Property="Padding" Value="0 5 0 5" />
                 </Style>
             </StackPanel.Resources>
-            <Button Command="{Binding LoginCommand}">
-                Login</Button>
             <Button>Register</Button>
             <Button Click="ExitButton_Click">Exit</Button>
         </StackPanel>

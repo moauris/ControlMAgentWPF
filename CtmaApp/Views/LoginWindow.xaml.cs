@@ -86,5 +86,17 @@ namespace CtmaApp.Views
         {
             Application.Current.Shutdown();
         }
+
+        private void CanExecute_Login(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var vm = (LoginViewModel)MainStackPanel.DataContext;
+            e.CanExecute = vm.CheckUserAndPass();
+        }
+
+        private void Executed_Login(object sender, ExecutedRoutedEventArgs e)
+        {
+            var vm = (LoginViewModel)MainStackPanel.DataContext;
+            vm.LogIn_Action();
+        }
     }
 }

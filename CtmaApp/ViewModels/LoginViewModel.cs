@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
-using CtmaApp.Commands;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Security.Principal;
@@ -51,23 +50,8 @@ namespace CtmaApp.ViewModels
 
         public GenericPrincipal CurrentUser { get; set; }
 
-        private ICommand _loginCommand;
-        public ICommand LoginCommand
-        {
-            //Done! How to handle commands
-            get 
-            {
-                Action<object> action = LogIn_Action;
-                Predicate<object> predict = CheckUserAndPass;
 
-                return _loginCommand ?? (_loginCommand =
-                new ActionCommand(action, predict));
-
-            }
-        }
-
-
-        private bool CheckUserAndPass(object parameter)
+        public bool CheckUserAndPass()
         {
             return _username != null && 
                 _username.Length > 0 && 
@@ -75,7 +59,7 @@ namespace CtmaApp.ViewModels
                 _password.Length > 0;
         }
 
-        private void LogIn_Action(object parameter)
+        public void LogIn_Action()
         {
             CurrentUser = CryptoServices.LogIn(UserName, Password);
             if (CurrentUser == null)
