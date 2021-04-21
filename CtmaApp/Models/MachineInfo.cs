@@ -27,11 +27,11 @@ namespace CtmaApp.Models
             sb.AppendLine(GetFQDN());
             //TODO: Need Value Converter to convert IP Address from string and back
             sb.Append("IPv4:");
-            sb.AppendLine(IPv4.ToString()); 
+            sb.AppendLine(IPv4?.ToString()); 
             sb.Append("IPv6:");
-            sb.AppendLine(IPv6.ToString());
+            sb.AppendLine(IPv6?.ToString());
             sb.Append("OSInfo:");
-            sb.AppendLine(OS.ToString());
+            sb.AppendLine(OS?.ToString());
 
             return sb.ToString();
 

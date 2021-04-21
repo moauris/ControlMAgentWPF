@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         xmlns:vm="clr-namespace:CtmaApp.ViewModels"
+        xmlns:r="clr-namespace:CtmaApp.ValidationRules"
+        xmlns:c="clr-namespace:CtmaApp.Converters"
         xmlns:local="clr-namespace:CtmaApp.Views"
         mc:Ignorable="d"
         Title="Enter a New Machine Detail" Height="Auto" Width="Auto">
@@ -85,15 +87,35 @@
             <HeaderedContentControl.Header>
                 IPv4
             </HeaderedContentControl.Header>
-            <TextBox x:Name="tbxIPv4"
-                     Text="{Binding MachineInfo.IPv4}"></TextBox>
+            <TextBox x:Name="tbxIPv4">
+                <TextBox.Text>
+                    <Binding Path="MachineInfo.IPv4">
+                        <Binding.ValidationRules>
+                            <r:IPAddressValidation IsIPv4="True"/>
+                        </Binding.ValidationRules>
+                        <Binding.Converter>
+                            <c:IPStringConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </HeaderedContentControl>
         <HeaderedContentControl Grid.Row="4">
             <HeaderedContentControl.Header>
                 IPv6
             </HeaderedContentControl.Header>
-            <TextBox x:Name="tbxIPv6"
-                     Text="{Binding MachineInfo.IPv6}"></TextBox>
+            <TextBox x:Name="tbxIPv6">
+                <TextBox.Text>
+                    <Binding Path="MachineInfo.IPv6">
+                        <Binding.ValidationRules>
+                            <r:IPAddressValidation IsIPv4="False"/>
+                        </Binding.ValidationRules>
+                        <Binding.Converter>
+                            <c:IPStringConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </HeaderedContentControl>
         
         <HeaderedContentControl Grid.Row="5">

@@ -28,6 +28,7 @@ namespace CtmaApp.Views
         private void btnCheckClicked(object sender, RoutedEventArgs e)
         {
             var vm = (MachineInfoDetailViewModel)MainGrid.DataContext;
+
             MessageBox.Show(vm.MachineInfo.ToSummary());
         }
     }
