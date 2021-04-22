@@ -31,5 +31,10 @@ namespace CtmaApp.Views
 
             MessageBox.Show(vm.MachineInfo.ToSummary());
         }
+
+        private void cbx0_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            
+        }
     }
 }

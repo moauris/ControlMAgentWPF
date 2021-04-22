@@ -69,7 +69,7 @@ namespace CtmaApp.ViewModels
             }
             else
             {
-                MessageBox.Show($"Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
+                //MessageBox.Show($"Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
                 Window wkspace = new WorkspaceWindow();
                 wkspace.Show();
                 Application.Current.MainWindow = wkspace;

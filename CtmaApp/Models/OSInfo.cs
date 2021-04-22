@@ -12,5 +12,9 @@ namespace CtmaApp.Models
         public string Platform { get; set; }
         public string Version { get; set; }
         public string Architecture { get; set; }
+        public override string ToString()
+        {
+            return $"{Platform} {Version} {Architecture}";
+        }
     }
 }

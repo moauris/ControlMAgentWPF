@@ -41,14 +41,14 @@
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Width" Value="288"/>
+            <Setter Property="Width" Value="338"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
 
         <Style TargetType="{x:Type ComboBox}">
-            <Setter Property="Width" Value="288"/>
+            <Setter Property="Width" Value="338"/>
             <Setter Property="Margin" Value="3"/>
             <Setter Property="FontSize" Value="22"/>
         </Style>
@@ -123,9 +123,24 @@
                 OSInfo
             </HeaderedContentControl.Header>
             <StackPanel>
-                <ComboBox x:Name="cbxOSInfo0"></ComboBox>
-                <ComboBox x:Name="cbxOSInfo1"></ComboBox>
-                <ComboBox x:Name="cbxOSInfo2"></ComboBox>
+                <ComboBox x:Name="cbxOSInfo0"
+                          ItemsSource="{Binding OSInfo0_List}"
+                          Text="{Binding 
+                    OSInfo0, 
+                    Mode=TwoWay,
+                    NotifyOnSourceUpdated=True}"
+                          SourceUpdated="cbx0_SourceUpdated"
+                          ></ComboBox>
+                <ComboBox x:Name="cbxOSInfo1"
+                          ItemsSource="{Binding OSInfo1_List}"
+                          Text="{Binding 
+                    OSInfo1, 
+                    Mode=TwoWay}"></ComboBox>
+                <ComboBox x:Name="cbxOSInfo2"
+                          ItemsSource="{Binding OSInfo2_List}"
+                          Text="{Binding
+                    OSInfo2,
+                    Mode=TwoWay}"></ComboBox>
             </StackPanel>
         </HeaderedContentControl>
 
