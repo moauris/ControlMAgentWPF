@@ -162,4 +162,5 @@ namespace CtmaApp.ViewModels
     internal delegate void _osDetailCompletedEventHandler(object sender, _osDetailCompletedEventArgs e);
 
 
+
 }

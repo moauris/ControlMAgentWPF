@@ -7,11 +7,13 @@
         xmlns:vm="clr-namespace:CtmaApp.ViewModels"
         xmlns:r="clr-namespace:CtmaApp.ValidationRules"
         xmlns:c="clr-namespace:CtmaApp.Converters"
+        xmlns:cmd="clr-namespace:CtmaApp.Commands"
         xmlns:local="clr-namespace:CtmaApp.Views"
         mc:Ignorable="d"
         Title="Enter a New Machine Detail" Height="Auto" Width="Auto">
     <Window.Resources>
         <vm:MachineInfoDetailViewModel x:Key="MachineViewModel"/>
+        <cmd:AddMachineInfoToDatabaseCommand x:Key="SubmitCommand"/>
 
         <DataTemplate x:Key="hccTitleText">
             <Grid>
@@ -58,6 +60,7 @@
     <Grid x:Name="MainGrid" DataContext="{StaticResource MachineViewModel}"
           Margin="5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -148,6 +151,11 @@
                 Margin="10" Width="180" Height="33"
                 Click="btnCheckClicked">
             Check
+        </Button>
+        <Button x:Name="btnSubmit" Grid.Row="7"
+                Margin="10" Width="180" Height="33"
+                Command="{StaticResource SubmitCommand}" CommandParameter="{Binding}">
+            Submit
         </Button>
     </Grid>
 </Window>
