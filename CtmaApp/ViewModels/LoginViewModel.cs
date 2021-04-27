@@ -11,6 +11,7 @@ using System.Security.Principal;
 using CtmaApp.AppSecurityService;
 using System.Windows;
 using CtmaApp.Views;
+using System.Diagnostics;
 
 namespace CtmaApp.ViewModels
 {
@@ -69,7 +70,11 @@ namespace CtmaApp.ViewModels
             }
             else
             {
-                //MessageBox.Show($"Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
+#if DEBUG
+                Trace.WriteLine($"[LoginViewModel]: Welcome, {CurrentUser.Identity.Name}, Is Authenticated: {CurrentUser.Identity.IsAuthenticated}");
+                Trace.Flush();
+#endif
+
                 Window wkspace = new WorkspaceWindow();
                 wkspace.Show();
                 Application.Current.MainWindow = wkspace;

@@ -46,12 +46,14 @@ namespace CtmaApp.ViewModels
         private void _osDetailCompletedHandler(object sender, _osDetailCompletedEventArgs e)
         {
             //Completed, injecting values to make a new OSInfo object
-
-            OSInfo _osInfo = new OSInfo();
-            _osInfo.Platform = e.Platform;
-            _osInfo.Version = e.Version;
-            _osInfo.Architecture = e.Arch;
-            _machineInfo.OS = _osInfo;
+            // DO NOT MAKE NEW OSInfo!!!!
+            // This will attempt to create new OSInfo entry in the EF mapped database
+            // instead select the OSInfo.ID from the EF core
+            OSInfo = _context.tbl_OSInfo
+                .Where(a => a.Platform == e.Platform)
+                .Where(b => b.Version == e.Version)
+                .Where(c => c.Architecture == e.Arch)
+                .FirstOrDefault();
         }
 
         private void _osDetailUpdatedHandler(object sender, _osDetailUpdatedEventArgs e)
@@ -73,7 +75,12 @@ namespace CtmaApp.ViewModels
                      .Distinct().ToList();
             }
         }
-
+        private OSInfo _osInfo;
+        public OSInfo OSInfo
+        {
+            get => _osInfo; 
+            set { _osInfo = value; OnPropertyChanged(); }
+        }
         private MachineInfo _machineInfo;
 
         public MachineInfo MachineInfo

@@ -11,7 +11,7 @@
     <Window.Resources>
         <viewmodels:WorkspaceViewModel x:Key="wkspaceViewModel"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource wkspaceViewModel}">
+    <Grid x:Name="MainGrid"  DataContext="{StaticResource wkspaceViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="7*"/>
@@ -60,7 +60,7 @@
             </Button>
         </StackPanel>
         <ListBox Grid.Column="1" Grid.Row="1" Margin="5"
-                 ItemsSource="{Binding MachineInfos}">
+                 ItemsSource="{Binding MachineInfos, Mode=TwoWay, NotifyOnTargetUpdated=True}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:MachineInfo}">
                     <Border BorderThickness="1"
@@ -75,12 +75,16 @@
                             </LinearGradientBrush> 
                         </Border.Background>
                     <StackPanel DataContext="{Binding}"
-                                Margin="5" >
+                                Margin="5"
+                                Width="270">
                         <TextBlock Text="{Binding HostName}"
                                    FontSize="16"
                                    FontWeight="Bold"
                                    HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding Domain}"/>
+                            <TextBlock Text="{Binding OS}"
+                                   FontSize="12"
+                                   HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding Domain}"/>
                         <TextBlock Text="{Binding IPv4}"/>
                         <TextBlock Text="{Binding IPv6}"/>
                     </StackPanel>

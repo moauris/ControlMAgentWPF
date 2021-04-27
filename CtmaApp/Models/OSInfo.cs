@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace CtmaApp.Models
 {
     public class OSInfo
     {
+        [Key]
         public int OSInfoID { get; set; }
         public string Platform { get; set; }
         public string Version { get; set; }

@@ -1,6 +1,7 @@
 ﻿using CtmaApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,6 +24,10 @@ namespace CtmaApp.Views
     {
         public LoginWindow()
         {
+#if DEBUG
+            
+            Trace.WriteLine("[LoginWindow]: Started.");
+#endif
             InitializeComponent();
             //This initialization happens before xaml data binding
 

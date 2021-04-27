@@ -9,6 +9,7 @@
     <RoutedUICommand x:Key="Command.AddNewMachine" Text="S.Command.AddNewMachine">
         <RoutedUICommand.InputGestures>
             <KeyGesture>Ctrl + A</KeyGesture>
+            <MouseGesture>LeftClick</MouseGesture>
         </RoutedUICommand.InputGestures>
     </RoutedUICommand>
     

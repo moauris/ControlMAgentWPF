@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net;
@@ -10,6 +11,7 @@ namespace CtmaApp.Models
 {
     public class MachineInfo
     {
+        [Key]
         public long MachineInfoID { get; set; }
         public string HostName { get; set; }
         public string Domain { get; set; }
