@@ -13,8 +13,6 @@
         Title="Enter a New Machine Detail" Height="Auto" Width="Auto">
     <Window.Resources>
         <vm:MachineInfoDetailViewModel x:Key="MachineViewModel"/>
-        <cmd:AddMachineInfoToDatabaseCommand x:Key="SubmitCommand"/>
-
         <DataTemplate x:Key="hccTitleText">
             <Grid>
                 <TextBlock Text="{Binding}" TextAlignment="Center"
@@ -147,7 +145,7 @@
             </StackPanel>
         </HeaderedContentControl>
 
-        <StackPanel Grid.Row="6">
+        <StackPanel Grid.Row="6" Width="200">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Margin" Value="10"/>
