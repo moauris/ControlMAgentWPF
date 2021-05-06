@@ -1,4 +1,6 @@
-﻿using CtmaApp.Models;
+﻿using CtmaApp.Commands;
+using CtmaApp.Models;
+using CtmaApp.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -58,5 +60,31 @@ namespace CtmaApp.ViewModels
             Trace.IndentLevel = 0;
 #endif
         }
+
+        private bool hasNoActiveDetailView = true;
+        private RelayCommand _addNewInfoCommand;
+
+        public RelayCommand AddNewInfoCommand
+        {
+            get {
+                RelayCommand result = _addNewInfoCommand ?? (_addNewInfoCommand =
+                    new RelayCommand
+                    (
+                        () =>
+                        {
+                            var detailView = new MachineInfoDetailView();
+                            detailView.Closed += (s, e) =>
+                            {
+                                hasNoActiveDetailView = true;
+                            };
+                            hasNoActiveDetailView = false;
+                            detailView.Show();
+                        },
+                        () => hasNoActiveDetailView
+                    ));
+                return result;
+            }
+        }
+
     }
 }

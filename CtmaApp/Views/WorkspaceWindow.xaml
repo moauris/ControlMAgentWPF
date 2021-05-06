@@ -44,7 +44,7 @@
                     <Setter Property="FontWeight" Value="Normal"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddNewMachine" Style="{StaticResource btnStyle}" Command="{StaticResource wkspaceAddNewCmd}"
+            <Button x:Name="btnAddNewMachine" Style="{StaticResource btnStyle}" Command="{Binding AddNewInfoCommand}"
                     >
                 Add a New Machine
             </Button>

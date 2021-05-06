@@ -29,7 +29,6 @@ namespace CtmaApp.ViewModels
             _osDetailUpdated?.Invoke(this, new _osDetailUpdatedEventArgs(IsL0));
         }
         internal event _osDetailCompletedEventHandler _osDetailCompleted;
-        public event EventHandler RequestClose;
 
         #endregion
 
