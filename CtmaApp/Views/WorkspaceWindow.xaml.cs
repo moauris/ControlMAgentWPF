@@ -26,15 +26,5 @@ namespace CtmaApp.Views
             InitializeComponent();
         }
 
-        private void CanExecute_BtnAddNew(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void Executed_BtnAddNew(object sender, ExecutedRoutedEventArgs e)
-        {
-            var detailView = new MachineInfoDetailView();
-            detailView.Show();
-        }
     }
 }

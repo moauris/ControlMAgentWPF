@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CtmaApp.Views"
+        xmlns:cmd="clr-namespace:CtmaApp.Commands"
         xmlns:models="clr-namespace:CtmaApp.Models"
         xmlns:viewmodels="clr-namespace:CtmaApp.ViewModels"
         mc:Ignorable="d"
         Title="Control/M Agent Database Manager" Height="450" Width="800">
     <Window.Resources>
         <viewmodels:WorkspaceViewModel x:Key="wkspaceViewModel"/>
+        <cmd:WkspaceAddNewCommand x:Key="wkspaceAddNewCmd"/>
     </Window.Resources>
     <Grid x:Name="MainGrid"  DataContext="{StaticResource wkspaceViewModel}">
         <Grid.ColumnDefinitions>
@@ -42,14 +44,8 @@
                     <Setter Property="FontWeight" Value="Normal"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddNewMachine" Style="{StaticResource btnStyle}"
+            <Button x:Name="btnAddNewMachine" Style="{StaticResource btnStyle}" Command="{StaticResource wkspaceAddNewCmd}"
                     >
-                <Button.CommandBindings>
-                    <CommandBinding Command="{StaticResource Command.AddNewMachine}"
-                                    CanExecute="CanExecute_BtnAddNew"
-                                    Executed="Executed_BtnAddNew"/>
-                    
-                </Button.CommandBindings>
                 Add a New Machine
             </Button>
             <Button x:Name="btnDeleteSelected" Style="{StaticResource btnStyle}">

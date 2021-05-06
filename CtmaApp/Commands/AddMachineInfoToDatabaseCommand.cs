@@ -13,6 +13,7 @@ using System.Windows.Input;
 
 namespace CtmaApp.Commands
 {
+    [Obsolete]
     public class AddMachineInfoToDatabaseCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
@@ -20,6 +21,8 @@ namespace CtmaApp.Commands
         public bool CanExecute(object parameter)
         {
             //TODO: Need to check if the MachineInfoDetail is complete
+            Trace.WriteLine("[AddMachineInfoDatabaseCommand.CanExecute] Parameter");
+            Trace.WriteLine(parameter.ToString());
             return true;
         }
 

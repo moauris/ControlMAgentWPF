@@ -1,4 +1,6 @@
-﻿using CtmaApp.Models;
+﻿using CtmaApp.Commands;
+using CtmaApp.Models;
+using CtmaApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,11 +9,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CtmaApp.ViewModels
 {
     public class MachineInfoDetailViewModel : INotifyPropertyChanged
     {
+        #region Events
+
         public event PropertyChangedEventHandler PropertyChanged;
         private protected virtual void OnPropertyChanged([CallerMemberName]string Property = null)
         {
@@ -24,7 +29,9 @@ namespace CtmaApp.ViewModels
             _osDetailUpdated?.Invoke(this, new _osDetailUpdatedEventArgs(IsL0));
         }
         internal event _osDetailCompletedEventHandler _osDetailCompleted;
+        public event EventHandler RequestClose;
 
+        #endregion
 
         private DataContext _context;
 
@@ -139,6 +146,36 @@ namespace CtmaApp.ViewModels
             get => _osInfo2_List;
 
             set { _osInfo2_List = value; OnPropertyChanged(); }
+        }
+
+        private bool _addNewButtonNotClicked = true;
+        private RelayCommand _addNewCommand;
+        public RelayCommand AddNewCommand
+        {
+            get
+            {
+                return _addNewCommand ?? (_addNewCommand = new RelayCommand(
+                () =>
+                {
+                    _context.tbl_MachineInfo.Add(MachineInfo);
+                    MachineInfo.OS = OSInfo;
+                    _context.SaveChanges();
+
+
+                    WorkspaceWindow window = Application.Current.MainWindow as WorkspaceWindow;
+                    WorkspaceViewModel model = window.MainGrid.DataContext as WorkspaceViewModel;
+                    model.RefreshMachineInfo();
+                    _addNewButtonNotClicked = false;
+                },
+                () =>
+                {
+                    //Check if form valid
+                    bool HostNameNotEmpty = MachineInfo.HostName is not null && MachineInfo.HostName.Length > 0;
+                    bool OSInfoNotEmpty = OSInfo is not null && OSInfo.ToString().Length > 0;
+
+                    return HostNameNotEmpty && OSInfoNotEmpty && _addNewButtonNotClicked;
+                }));
+            }
         }
     }
 
