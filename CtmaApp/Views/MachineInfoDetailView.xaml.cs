@@ -22,6 +22,7 @@ namespace CtmaApp.Views
     {
         public MachineInfoDetailView()
         {
+            DataContext = new MachineInfoDetailViewModel(this);
             InitializeComponent();
         }
 

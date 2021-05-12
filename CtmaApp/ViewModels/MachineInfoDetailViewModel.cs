@@ -32,10 +32,12 @@ namespace CtmaApp.ViewModels
 
         #endregion
 
+        private MachineInfoDetailView _view;
         private DataContext _context;
 
-        public MachineInfoDetailViewModel()
+        public MachineInfoDetailViewModel(MachineInfoDetailView view)
         {
+            _view = view;
             _machineInfo = new MachineInfo();
 
             OSInfo1_List = new List<string>();
@@ -157,11 +159,17 @@ namespace CtmaApp.ViewModels
                 () =>
                 {
                     IsAddCommandActive = true;
+                    _view.pBarMain.IsIndeterminate = true;
+                    _view.pBarMain.Value = 100;
                     WorkspaceWindow window = Application.Current.MainWindow as WorkspaceWindow;
                     WorkspaceViewModel model = window.MainGrid.DataContext as WorkspaceViewModel;
                     model.RefreshMachineInfo();
                     _addNewButtonNotClicked = false;
                     IsAddCommandActive = false;
+
+                    _view.pBarMain.IsIndeterminate = false;
+
+                    _view.pBarMain.Value = 0;
                 },
                 () =>
                 {

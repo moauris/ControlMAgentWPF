@@ -61,7 +61,7 @@
         </Style>
                
     </Window.Resources>
-    <StackPanel DataContext="{StaticResource MachineViewModel}">
+    <StackPanel>
     <Grid x:Name="MainGrid"
               Margin="5">
         <Grid.RowDefinitions>
