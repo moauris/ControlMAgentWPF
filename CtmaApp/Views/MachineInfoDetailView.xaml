@@ -10,7 +10,7 @@
         xmlns:cmd="clr-namespace:CtmaApp.Commands"
         xmlns:local="clr-namespace:CtmaApp.Views"
         mc:Ignorable="d"
-        Title="Enter a New Machine Detail" Height="Auto" Width="Auto">
+        Title="Enter a New Machine Detail" Width="600" Height="780">
     <Window.Resources>
         <vm:MachineInfoDetailViewModel x:Key="MachineViewModel"/>
         <DataTemplate x:Key="hccTitleText">
@@ -61,105 +61,79 @@
         </Style>
                
     </Window.Resources>
-    <Grid Width="670" Height="730">
-        <Canvas Background="Pink">
-            <Ellipse Width="70" Height="70"
-                     Canvas.Left="0" Canvas.Top="0">
-                <Ellipse.Fill>
-                    <RadialGradientBrush>
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="DarkGreen" Offset="0.3"/>
-                        <GradientStop Color="Pink" Offset="1"/>
-                    </RadialGradientBrush>
-                </Ellipse.Fill>
-            </Ellipse>
-            <Rectangle Width="670" Height="730"
-                       Stroke="Red" StrokeThickness="20"
-                       Opacity="1">
-            </Rectangle>
-            <Rectangle Width="670" Height="730"
-                       Fill="Red"
-                       Opacity="1">
-                <Rectangle.RenderTransform>
-                    <ScaleTransform ScaleX="0.92" ScaleY="0.92"
-                                    CenterX="335" CenterY="375"/>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-        </Canvas>
-        <Border BorderBrush="Black" BorderThickness="3" Margin="15" CornerRadius="10">
-            <Grid x:Name="MainGrid" 
-              DataContext="{StaticResource MachineViewModel}"
+    <StackPanel DataContext="{StaticResource MachineViewModel}">
+    <Grid x:Name="MainGrid"
               Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Margin="10" FontSize="25"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="10" FontSize="25"
                        TextAlignment="Center" Background="Blue"
                        Foreground="White" Width="360">
             Creating new Machine Info
-                </TextBlock>
-                <HeaderedContentControl Grid.Row="1">
-                    <HeaderedContentControl.Header>
-                        HostName
-                    </HeaderedContentControl.Header>
-                    <TextBox x:Name="tbxHostname" 
+        </TextBlock>
+        <HeaderedContentControl Grid.Row="1">
+            <HeaderedContentControl.Header>
+                HostName
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxHostname" 
                      Text="{Binding MachineInfo.HostName}"></TextBox>
-                </HeaderedContentControl>
-                <HeaderedContentControl Grid.Row="2">
-                    <HeaderedContentControl.Header>
-                        Domain
-                    </HeaderedContentControl.Header>
-                    <TextBox x:Name="tbxDomain"
+        </HeaderedContentControl>
+        <HeaderedContentControl Grid.Row="2">
+            <HeaderedContentControl.Header>
+                Domain
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxDomain"
                      Text="{Binding MachineInfo.Domain}"></TextBox>
-                </HeaderedContentControl>
-                <HeaderedContentControl Grid.Row="3">
-                    <HeaderedContentControl.Header>
-                        IPv4
-                    </HeaderedContentControl.Header>
-                    <TextBox x:Name="tbxIPv4">
-                        <TextBox.Text>
-                            <Binding Path="MachineInfo.IPv4">
-                                <Binding.ValidationRules>
-                                    <r:IPAddressValidation IsIPv4="True"/>
-                                </Binding.ValidationRules>
-                                <Binding.Converter>
-                                    <c:IPStringConverter/>
-                                </Binding.Converter>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </HeaderedContentControl>
-                <HeaderedContentControl Grid.Row="4">
-                    <HeaderedContentControl.Header>
-                        IPv6
-                    </HeaderedContentControl.Header>
-                    <TextBox x:Name="tbxIPv6">
-                        <TextBox.Text>
-                            <Binding Path="MachineInfo.IPv6">
-                                <Binding.ValidationRules>
-                                    <r:IPAddressValidation IsIPv4="False"/>
-                                </Binding.ValidationRules>
-                                <Binding.Converter>
-                                    <c:IPStringConverter/>
-                                </Binding.Converter>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </HeaderedContentControl>
+        </HeaderedContentControl>
+        <HeaderedContentControl Grid.Row="3">
+            <HeaderedContentControl.Header>
+                IPv4
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxIPv4">
+                <TextBox.Text>
+                    <Binding Path="MachineInfo.IPv4">
+                        <Binding.ValidationRules>
+                            <r:IPAddressValidation IsIPv4="True"/>
+                        </Binding.ValidationRules>
+                        <Binding.Converter>
+                            <c:IPStringConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </HeaderedContentControl>
+        <HeaderedContentControl Grid.Row="4">
+            <HeaderedContentControl.Header>
+                IPv6
+            </HeaderedContentControl.Header>
+            <TextBox x:Name="tbxIPv6">
+                <TextBox.Text>
+                    <Binding Path="MachineInfo.IPv6">
+                        <Binding.ValidationRules>
+                            <r:IPAddressValidation IsIPv4="False"/>
+                        </Binding.ValidationRules>
+                        <Binding.Converter>
+                            <c:IPStringConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </HeaderedContentControl>
 
-                <HeaderedContentControl Grid.Row="5">
-                    <HeaderedContentControl.Header>
-                        OSInfo
-                    </HeaderedContentControl.Header>
-                    <StackPanel>
-                        <ComboBox x:Name="cbxOSInfo0"
+        <HeaderedContentControl Grid.Row="5">
+            <HeaderedContentControl.Header>
+                OSInfo
+            </HeaderedContentControl.Header>
+            <StackPanel>
+                <ComboBox x:Name="cbxOSInfo0"
                           ItemsSource="{Binding OSInfo0_List}"
                           Text="{Binding 
                     OSInfo0, 
@@ -167,45 +141,53 @@
                     NotifyOnSourceUpdated=True}"
                           SourceUpdated="cbx0_SourceUpdated"
                           ></ComboBox>
-                        <ComboBox x:Name="cbxOSInfo1"
+                <ComboBox x:Name="cbxOSInfo1"
                           ItemsSource="{Binding OSInfo1_List}"
                           Text="{Binding 
                     OSInfo1, 
                     Mode=TwoWay}"></ComboBox>
-                        <ComboBox x:Name="cbxOSInfo2"
+                <ComboBox x:Name="cbxOSInfo2"
                           ItemsSource="{Binding OSInfo2_List}"
                           Text="{Binding
                     OSInfo2,
                     Mode=TwoWay}"></ComboBox>
-                    </StackPanel>
-                </HeaderedContentControl>
-                <Border Grid.Row="6" Width="Auto"
+            </StackPanel>
+        </HeaderedContentControl>
+        <Border Grid.Row="6" Width="Auto"
                     Margin="10" BorderBrush="Yellow"
                     BorderThickness="3">
-                    <StackPanel >
-                        <StackPanel.Resources>
-                            <Style TargetType="{x:Type Button}">
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="Width" Value="180"/>
-                                <Setter Property="Height" Value="33"/>
-                                <Setter Property="FontSize" Value="20"/>
-                            </Style>
-                        </StackPanel.Resources>
+            <StackPanel >
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Width" Value="180"/>
+                        <Setter Property="Height" Value="33"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </StackPanel.Resources>
 
-                        <Button x:Name="btnCheck"
+                    <Button x:Name="btnCheck"
                 Click="btnCheckClicked">
-                            Check
-                        </Button>
-                        <Button x:Name="btnSubmit"
+                        Check
+                </Button>
+                <Button x:Name="btnSubmit"
                 Command="{Binding AddNewCommand}">
-                            Submit
-                        </Button>
-                        <Button x:Name="btnCancel">
-                            Cancel
-                        </Button>
-                    </StackPanel>
-                </Border>
-            </Grid>
+                    Submit
+                </Button>
+                <Button x:Name="btnCancel">
+                    Cancel
+                </Button>
+            </StackPanel>
         </Border>
     </Grid>
+
+    <StatusBar Height="30">
+            <ProgressBar x:Name="pBarMain"
+                         Width="177"
+                         Height="24"
+                         FlowDirection="RightToLeft"
+                         IsIndeterminate="{Binding IsAddCommandActive}">
+            </ProgressBar>
+        </StatusBar>
+    </StackPanel>
 </Window>

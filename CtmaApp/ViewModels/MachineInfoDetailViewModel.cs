@@ -156,15 +156,12 @@ namespace CtmaApp.ViewModels
                 return _addNewCommand ?? (_addNewCommand = new RelayCommand(
                 () =>
                 {
-                    _context.tbl_MachineInfo.Add(MachineInfo);
-                    MachineInfo.OS = OSInfo;
-                    _context.SaveChanges();
-
-
+                    IsAddCommandActive = true;
                     WorkspaceWindow window = Application.Current.MainWindow as WorkspaceWindow;
                     WorkspaceViewModel model = window.MainGrid.DataContext as WorkspaceViewModel;
                     model.RefreshMachineInfo();
                     _addNewButtonNotClicked = false;
+                    IsAddCommandActive = false;
                 },
                 () =>
                 {
@@ -176,6 +173,9 @@ namespace CtmaApp.ViewModels
                 }));
             }
         }
+
+        public bool IsAddCommandActive = false;
+
     }
 
     internal class _osDetailUpdatedEventArgs : EventArgs
