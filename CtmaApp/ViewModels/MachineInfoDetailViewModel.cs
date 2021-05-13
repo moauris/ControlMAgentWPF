@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -156,19 +157,31 @@ namespace CtmaApp.ViewModels
             get
             {
                 return _addNewCommand ?? (_addNewCommand = new RelayCommand(
-                () =>
+                async () =>
                 {
-                    IsAddCommandActive = true;
-                    _view.pBarMain.IsIndeterminate = true;
-                    _view.pBarMain.Value = 100;
                     WorkspaceWindow window = Application.Current.MainWindow as WorkspaceWindow;
                     WorkspaceViewModel model = window.MainGrid.DataContext as WorkspaceViewModel;
+
+
+                    _view.pBarMain.IsIndeterminate = true;
+
+                    Task setPbarTask = Task.Run(() =>
+                    {
+                        IsAddCommandActive = true;
+                    });
+                    await setPbarTask;
+
+                    await _context.tbl_MachineInfo.AddAsync(MachineInfo);
+                    MachineInfo.OS = OSInfo;
+
+
+                    int affectedRow = await _context.SaveChangesAsync();
+
+
                     model.RefreshMachineInfo();
                     _addNewButtonNotClicked = false;
                     IsAddCommandActive = false;
-
                     _view.pBarMain.IsIndeterminate = false;
-
                     _view.pBarMain.Value = 0;
                 },
                 () =>
